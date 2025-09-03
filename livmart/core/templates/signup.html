@@ -1,0 +1,43 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Register{% endblock%}
+
+{% block content %}
+<div class="w-1/2 my-6 p-5 mx-auto bg-gray-100 rounded-xl">
+    <h1 class="mb-6 text-3xl">Sign Up</h1>
+    <p class="mb-6">Create an account by filling in the information below.</p>
+    <p class="mb-6">If you already have an account, <a href
+    
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="form.username.id_for_label" class="inline-block mb-2">Username:</label><br>
+        {{ form.username }}
+        </div>
+        <div class="mb-3">
+            <label for="form.email.id_for_label" class="inline-block mb-2">Email:</label><br>
+        {{ form.email }}
+        </div>
+        <div class="mb-3">
+            <label for="form.password1.id_for_label" class="inline-block mb-2">Password:</label><br>
+        {{ form.password1 }}
+        </div>
+        <div class="mb-3">
+            <label for="form.password2.id_for_label" class="inline-block mb-2">Confirm password:</label><br>
+        {{ form.password2 }}
+        </div>
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+                
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <input type="submit" value="Submit" class="px-4 py-2 text-md bg-teal-500 text-white hover:bg-teal-700 rounded-xl">
+    </form>
+</div>
+{% endblock %}
