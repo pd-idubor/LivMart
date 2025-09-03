@@ -1,0 +1,70 @@
+{% extends 'base_template.html' %}
+{% block title %}LivMart - Home{% endblock %}
+
+{% block content %}
+{% comment %} <h1>Welcome to LivMart</h1>
+<p>Your one-stop shop for all your needs!</p> {% endcomment %}
+
+<div class="flex px-5 rounded-xl bg-gray-100">
+    <!-- Sidebar for categories and filters 
+<div class="w-1/4 mt-5 mb-10 mr-5">
+    <div class="pr-6 py-10">
+        <h2 class="mb-3 text-xl">Browse by</h2>
+        <hr class="border-gray-300">
+        
+        <h3 class="mb-2 mt-5 text-lg">Categories</h3>
+        <ul class="space-y-2 text-md text-teal-500">
+            {% for category in categories %}
+            <li>
+                <a href="{% url 'product:category_detail' category.pk %}" class="hover:text-gray-300">{{ category.title }}</a>
+                <span class="bg-teal-500 text-white text-xs font-sm me-2 px-1.5 py-0.5 rounded-2xl ">{{ categories | length }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="mb-2 mt-5 text-lg">Filter by</h3>
+        <hr class="border-gray-300">
+        <ul class="space-y-2 text-md text-teal-500">
+            <li><a href="#" class="hover:text-gray-300">Price</a></li>
+            <li><a href="#" class="hover:text-gray-300">Brand</a></li>
+            <li><a href="#" class="hover:text-gray-300">Rating</a></li>
+        </ul>
+    </div>
+</div>-->
+<div class="mt-5 mb-10 px-6 py-10">
+    <h2 class="mb-10 text-xl text-center font-bold">Latest Products</h2>
+    <div class="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
+        {% for product in products %}
+        <div class="p-5 m-3 bg-white  border border-gray-300 rounded-lg hover:shadow-lg">
+            <a href="{% url 'product:detail' product.pk %}">
+                <div>
+                    <img src="{{ product.image.url }}" alt="Product-{{ product.name }}" class="object-cover rounded-t-xl">
+                </div>
+                <div class=" rounded-b-xl p-3">
+                    <h2 class="font-semibold text-lg">{{ product.name }}</h2>
+                    <p class="text-gray-500">Price: ${{product.price}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+<div class="mt-5 px-6 py-10 ml-auto rounded-xl bg-gray-100">
+    <h2 class="mb-10 text-xl text-center font-bold">Categories</h2>
+    <div class="bg-gra-500 grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
+        {% for category in categories %}
+        <div class="p-5 m-5 bg-white border border-gray-300 rounded-lg hover:shadow-lg">
+            <a href="#">
+                <div class=" rounded-b-xl p-3">
+                    <h2 class="font-semibold text-lg">{{ category.title }}</h2>
+                    <p class="text-gray-500">{{ category.products.count }} product{{ category.products.count|pluralize }}</p>
+                    
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
