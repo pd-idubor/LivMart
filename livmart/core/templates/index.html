@@ -56,7 +56,7 @@
     <div class="bg-gra-500 grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
         {% for category in categories %}
         <div class="p-5 m-5 bg-white border border-gray-300 rounded-lg hover:shadow-lg">
-            <a href="#">
+            <a href="{% url 'product:category_detail' category.pk %}">
                 <div class=" rounded-b-xl p-3">
                     <h2 class="font-semibold text-lg">{{ category.title }}</h2>
                     <p class="text-gray-500">{{ category.products.count }} product{{ category.products.count|pluralize }}</p>

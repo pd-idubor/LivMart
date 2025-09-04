@@ -3,26 +3,29 @@
 {% block title %}Products{% endblock %}
 {% block content %}
 <div class="pb-6 grid grid-cols-4 gap-4">
-    <div class="bg-gray-100 py-2 px-2 rounded-xl col-span-1">
-        <form method="get" class="" action="{% url 'product:search' %}">
+    <div class="bg-gray-100 py-2 rounded-xl col-span-1">
+        <form method="get" class="px-2" action="{% url 'product:search' %}">
             <input name="query" type="text" value="{{ query }}" placeholder="Find products by name" class="w-full py-2 px-5 border rounded-xl">
             <button class="mt-2 py-1 px-5 text-lg bg-teal-500 text-white rounded-xl">Search</button> 
         </form>
 
         <hr class="text-gray-400 my-5">
-        <p class="text-lg font-semibold">Categories</p>
+        <p class="text-lg font-semibold pl-1">Categories</p>
         <div class="px-2 py-3">
             {% for category in categories %}
             <div class="py-1">
-                <a href="{% url 'product:search' %}?query={{ query }}&category={{ category.id}}" class="text-gray-700 hover:text-black">{{ category.title }}</a>
+                <a href="{% url 'product:search' %}?query={{ query }}&category={{ category.id}}" class="text-gray-700 hover:text-teal-500">{{ category.title }}</a>
             </div>
             {% endfor %}
         </div>
 
-        <hr class="text-gray-400 my-6">
-        <p class="font-semibold">Clear Filters</p>
-        <div class="py-1"><a href="{% url 'product:search' %}" class="mt-2 py-2 px-6 inline-block bg-yellow-500 text-white rounded-xl">Clear</a></div>
+        {% comment %} Filter {% endcomment %}
+        <div class="px-2">
+            <hr class="text-gray-400 my-6">
+            <p class="font-semibold">Clear Filters</p>
+            <div class="py-1"><a href="{% url 'product:search' %}" class="mt-2 py-2 px-6 inline-block bg-yellow-500 text-white rounded-xl">Clear</a></div>
 
+        </div>
     </div>
     
 

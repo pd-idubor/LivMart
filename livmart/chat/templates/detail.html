@@ -1,0 +1,23 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Conversation{% endblock %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl">Conversations</h1>
+    <div class="space-y-6">
+        {% for message in chat.messages.all %}
+            <div class="p-6 flex {% if message.created_by == request.user %} bg-teal-200 {% else %} bg-gray-100 rounded-xl {% endif %}">
+                <div>
+                    <p class="mb-4"><strong>{{ message.created_by.username }}</strong> | {{ message.created_at }}</p>
+                    <p>{{ message.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <form action="." method="POST" class="mt-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Send" class="mt-6 px-4 py-2 text-md bg-teal-500 text-white hover:bg-teal-700 rounded-xl">
+    </form>
+    
+{% endblock %}

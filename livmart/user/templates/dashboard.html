@@ -3,11 +3,14 @@
 
 {% block content %}
 
-<div class="flex pl-5 rounded-xl bg-gray-100">
-
-<div class="w-3/4 mt-5 mb-10 px-6 py-10">
+<div class="pl-5 rounded-xl bg-gray-100">
+<div class="flex justify-between w-full pt-5 px-3 items-center">
+    <h3 class="text-gray-900 text-lg font-semibold"><i class="fa-solid fa-user"></i>    {{ user.get_username|capfirst }}</h3>
+    <a href="{% url 'chat:inbox' %}" class="rounded-2xl px-4 p-2 bg-teal-500 text-white hover:bg-teal-600">My Inbox</a>
+</div>
+<div class="mt-5 mb-10 px-6 py-10">
     <h2 class="mb-10 text-xl text-center font-bold">My Products</h2>
-    <div class="bg-gra-500 grid grid-col-1 gap-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-col-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
         {% for product in my_products %}
         <div class="p-5 m-3 bg-white rounded-lg hover:shadow-lg">
             <a href="{% url 'product:detail' product.pk %}">
